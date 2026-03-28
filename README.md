@@ -16,19 +16,19 @@ The application allows users to create and view kitchen orders.
 
 
 
-Browser / Client  
+Browser / Client
 
-↓  
+↓
 
-Kubernetes Service  
+Kubernetes Service
 
-↓  
+↓
 
-API Pod (Node.js)  
+API Pod (Node.js)
 
-↓  
+↓
 
-MongoDB Pod  
+MongoDB Pod
 
 
 
@@ -81,4 +81,12 @@ GET /orders
 
 
 \### Build Docker Image
+
+
+
+\## 📸 Screenshots (Version 2 Implementation)
+
+
+
+\[View Screenshots PDF](docs/version2-screenshots.pdf)
 
