@@ -1,0 +1,12 @@
+Always follow clean, maintainable, and scalable coding practices.
+
+Follow these principles:
+- SOLID principles
+- DRY (Don't Repeat Yourself)
+- KISS (Keep It Simple, Stupid)
+- Separation of Concerns
+- Modular architecture
+
+Never generate overly complex solutions if a simpler one exists.
+Prefer readability and maintainability over clever tricks.
+

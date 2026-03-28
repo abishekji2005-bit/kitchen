@@ -30,3 +30,15 @@ app.get("/orders",(req,res)=>{
 app.listen(3000,()=>{
   console.log("Kitchen API running on port 3000");
 });
+app.get('/menu', (req, res) => {
+  res.json([
+    { name: "Chicken Biryani", price: 180 },
+    { name: "Paneer Butter Masala", price: 150 },
+    { name: "Dosai", price: 60 }
+  ]);
+});
+app.delete('/orders/:id', (req, res) => {
+  const id = req.params.id;
+  orders = orders.filter(o => String(o.id) !== id);
+  res.json({ message: "Deleted" });
+});

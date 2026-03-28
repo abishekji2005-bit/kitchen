@@ -35,13 +35,50 @@ data:
     <html>
     <head>
       <title>Kitchen Orders</title>
-      <style>
-        body { font-family: Arial; background:#111827; color:#e5e7eb; max-width:800px; margin:auto; padding:20px;}
-        input { padding:8px; }
-        button { padding:8px; }
-        table { width:100%; margin-top:20px; border-collapse:collapse;}
-        td,th { border-bottom:1px solid #374151; padding:8px;}
-      </style>
+      <script>
+        const API_BASE_URL = "/api";
+
+        async function loadOrders() {
+          const res = await fetch(`${API_BASE_URL}/orders`);
+          const data = await res.json();
+          const tbody = document.getElementById("orders");
+
+          // Build the entire HTML string first, then update the DOM once for better performance
+          tbody.innerHTML = data.map(o => `
+            <tr>
+              <td>${o.dish}</td>
+              <td>${o.status}</td>
+              <td>
+                <button onclick="deleteOrder('${o.id || o._id}')">Delete</button>
+              </td>
+            </tr>
+          `).join("");
+        }
+
+        async function createOrder() {
+          const dish = document.getElementById("dish").value;
+          
+          await fetch(`${API_BASE_URL}/orders`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ dish })
+          });
+          
+          loadOrders();
+        }
+
+        async function deleteOrder(id) {
+          await fetch(`${API_BASE_URL}/orders/${id}`, { 
+            method: "DELETE" 
+          });
+          
+          loadOrders();
+        }
+
+        // Initial load and polling
+        loadOrders();
+        setInterval(loadOrders, 3000);
+      </script>
     </head>
     <body>
       <h1>Kitchen Orders</h1>
